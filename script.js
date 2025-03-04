@@ -29,13 +29,16 @@ function agregarPedido() {
 
     // Mostrar el precio del pedido actual
     document.getElementById("precioTotal").innerText = "Total: " + precioTotal.toFixed(2) + "€";
-
-    cargarPedidos();
 }
 
 function confirmarPedido() {
+    if (pedidos.length === 0) {
+        return;
+    }
+
     localStorage.setItem("pedidos", JSON.stringify(pedidos));
-    alert("Pedido enviado a la cocina!");
+
+    cargarPedidos();
 
     // Limpiar la interfaz para el siguiente pedido
     document.getElementById("precioTotal").innerText = "Total: 0.00€";
@@ -43,6 +46,7 @@ function confirmarPedido() {
     for (var i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false;
     }
+
 }
 
 //Esta sería mi parte.
@@ -106,7 +110,6 @@ function recogerPedido(index) {
     var pedido = pedidos.splice(index, 1);
     
     localStorage.setItem("pedidos", JSON.stringify(pedidos));
-    alert("Pedido recogido!");
     cargarPedidos();
 }
 
