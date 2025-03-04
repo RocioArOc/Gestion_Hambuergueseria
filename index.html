@@ -6,61 +6,28 @@
     <link rel="stylesheet" href="burgerStyle.css">
 </head>
 <body>
-    
-    <div id="zonaPedido" class="zonaPedidos">
-        <!--Seleccion del producto principal-->
-        <div>
-        <h3>Elige tu producto principal:</h3>
-            <label><input type="radio" name="producto" value="hamburguesa"> Hamburguesa - 5.00€</label>
-            <label><input type="radio" name="producto" value="perrito"> Perrito Caliente - 3.50€</label>
-            <label><input type="radio" name="producto" value="bocadillo"> Bocadillo - 4.00€</label>
-        </div>
-
-        <!--Seleccion de los ingredientes-->
-        <div>
-            <h3>Ingredientes adicionales (+0.50€)</h3>
-            <label><input type="checkbox" value="bacon"> Bacon</label>
-            <label><input type="checkbox" value="cebolla"> Cebolla caramelizada</label>
-            <label><input type="checkbox" value="huevo"> Huevo frito</label>
-            <label><input type="checkbox" value="champinones"> Champiñones</label>
-            <label><input type="checkbox" value="jalapenos"> Jalapeños</label>
-            <label><input type="checkbox" value="mayonesa"> Mayonesa</label>
-            <label><input type="checkbox" value="ketchup"> Ketchup</label>
-            <label><input type="checkbox" value="mostaza"> Mostaza</label>
-        </div>
-
-        <!-- Complementos -->
-        <div>
-            <h3>Complementos</h3>
-            <label><input type="checkbox" value="patatas"> Patatas Fritas - 2.00€</label>
-            <label><input type="checkbox" value="ensalada"> Ensalada - 1.50€</label>
-            <label><input type="checkbox" value="fingersPollo"> Fingers de pollo - 2.50€</label>
-        </div>
-
-        <!-- Bebidas -->
-        <div>
-            <h3>Bebidas</h3>
-            <label><input type="radio" name="bebida" value="agua"> Agua - 1.00€</label>
-            <label><input type="radio" name="bebida" value="refresco"> Refresco - 1.50€</label>
-            <label><input type="radio" name="bebida" value="cerveza"> Cerveza sin alcohol - 2.00€</label>
-        </div>
-
-        <!-- Cantidad -->
-        <div>
-            <label for="cantidad">Cantidad:</label>
-            <input type="number" id="cantidad" min="1" max="50" value="1">
-        </div>
+    <div class="zona" id="zonaPedido">
+        <h2>Realizar Pedido</h2>
+        <select id="producto">
+            <option value="hamburguesa">Hamburguesa - 5.00€</option>
+            <option value="perrito">Perrito Caliente - 3.50€</option>
+            <option value="bocadillo">Bocadillo - 4.00€</option>
+        </select>
+        <button onclick="agregarPedido()">Añadir Pedido</button>
+        <p id="precioTotal">Total: 0.00€</p>
+        <button onclick="confirmarPedido()">Confirmar Pedido</button>
     </div>
 
-    <!-- Resumen del pedido -->
-    <div id="resumenPedido" class="resumenPedidos">
-        <h3>Resumen del Pedido</h3>
-        <p id="detallePedido"></p>
-        <p><strong>Total: </strong> <p id="precioTotal">0.00€</p></p>
-
-    <!-- Botón para confirmar -->
-    <button id="confirmarPedido">Confirmar Pedido</button>
+    <div class="zona" id="zonaDisplay">
+        <h2>Pedidos en Proceso</h2>
+        <ul id="listaPedidos"></ul>
     </div>
+
+    <div class="zona" id="zonaRecogida">
+        <h2>Recoger Pedido</h2>
+        <ul id="listaRecogida"></ul>
+    </div>
+
 <script src="script.js"></script> 
 </body>
 </html>
