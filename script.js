@@ -88,13 +88,15 @@ function cargarPedidos() {
 
 function cambiarEstado(id, nuevoEstado) {
     var pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-    var pedido = pedidos.find(function(p) {
-        return p.id === id;
-    });
-    if (pedido) {
-        pedido.estado = nuevoEstado;
-        localStorage.setItem("pedidos", JSON.stringify(pedidos));
-        cargarPedidos();
+
+    // Reemplazamos el find con un bucle for
+    for (var i = 0; i < pedidos.length; i++) {
+        if (pedidos[i].id === id) {
+            pedidos[i].estado = nuevoEstado;
+            localStorage.setItem("pedidos", JSON.stringify(pedidos));
+            cargarPedidos();
+            break; // Salimos del bucle una vez que encontramos el pedido
+        }
     }
 }
 
