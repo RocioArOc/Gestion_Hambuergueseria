@@ -18,7 +18,7 @@ function agregarPedido() {
 
     // Bebida
     var bebida = document.getElementById("bebida").value;
-    var preciosBebidas = { "agua": 1.00, "refresco": 1.50, "cerveza": 2.00 };
+    var preciosBebidas = {"ninguno": 0.00, "agua": 1.00, "refresco": 1.50, "cerveza": 2.00 };
     var precioBebida = preciosBebidas[bebida];
 
     // Complemento
