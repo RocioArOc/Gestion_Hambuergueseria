@@ -21,7 +21,22 @@
         <label><input type="checkbox" value="champiñones"> Champiñones</label><br>
         <label><input type="checkbox" value="jalapeños"> Jalapeños</label><br>
         <label><input type="checkbox" value="mayonesa"> Mayonesa especial</label><br>
-        
+
+        <h3>Bebidas</h3>
+        <select id="bebida">
+            <option value="agua">Agua - 1.00€</option>
+            <option value="refresco">Refresco - 1.50€</option>
+            <option value="cerveza">Cerveza sin alcohol - 2.00€</option>
+        </select>
+
+        <h3>Complementos</h3>
+        <select id="complemento">
+            <option value="ninguno">Ninguno - 0.00€</option>
+            <option value="patatas">Patatas fritas - 2.00€</option>
+            <option value="ensalada">Ensalada - 1.50€</option>
+            <option value="aros">Aros de cebolla - 2.50€</option>
+        </select>
+
         <button onclick="agregarPedido()">Añadir Pedido</button>
         <p id="precioTotal">Total: 0.00€</p>
         <button onclick="confirmarPedido()">Confirmar Pedido</button>

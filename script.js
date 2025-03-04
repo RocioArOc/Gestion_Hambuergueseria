@@ -16,6 +16,19 @@ function agregarPedido() {
 
     var precioTotal = precioBase[producto] + (ingredientesAdicionales.length * 0.50);
 
+    // Bebida
+    var bebida = document.getElementById("bebida").value;
+    var preciosBebidas = { "agua": 1.00, "refresco": 1.50, "cerveza": 2.00 };
+    var precioBebida = preciosBebidas[bebida];
+
+    // Complemento
+    var complemento = document.getElementById("complemento").value;
+    var preciosComplementos = { "ninguno": 0.00, "patatas": 2.00, "ensalada": 1.50, "aros": 2.50 };
+    var precioComplemento = preciosComplementos[complemento];
+
+    // Calculo del total
+    var precioTotal = precioBase[producto] + (ingredientesAdicionales.length * 0.50) + precioBebida + precioComplemento;
+
     var pedido = {
         id: numeroPedido++,
         producto: producto,
