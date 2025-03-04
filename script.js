@@ -29,6 +29,8 @@ function agregarPedido() {
 
     // Mostrar el precio del pedido actual
     document.getElementById("precioTotal").innerText = "Total: " + precioTotal.toFixed(2) + "€";
+
+    cargarPedidos();
 }
 
 function confirmarPedido() {
@@ -89,13 +91,12 @@ function cargarPedidos() {
 function cambiarEstado(id, nuevoEstado) {
     var pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
 
-    // Reemplazamos el find con un bucle for
     for (var i = 0; i < pedidos.length; i++) {
         if (pedidos[i].id === id) {
             pedidos[i].estado = nuevoEstado;
             localStorage.setItem("pedidos", JSON.stringify(pedidos));
-            cargarPedidos();
-            break; // Salimos del bucle una vez que encontramos el pedido
+            cargarPedidos(); 
+            break; 
         }
     }
 }
