@@ -86,12 +86,14 @@ function cargarPedidos() {
                     cambiarEstado(id, "En proceso");
                 }, 3000);
             })(pedido.id);
+
         } else if (pedido.estado === "En proceso") {
             (function(id) {
                 setTimeout(function() {
                     cambiarEstado(id, "Listo para recoger");
                 }, 5000);
             })(pedido.id);
+            
         } else if (pedido.estado === "Listo para recoger") {
             var btnRecoger = document.createElement("button");
             btnRecoger.innerText = "Recoger";
