@@ -1,4 +1,4 @@
-//Ro esta es tu parte
+//Parte Ro
 var pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
 var numeroPedido = JSON.parse(localStorage.getItem("numeroPedido")) || 1;
 
@@ -62,67 +62,79 @@ function confirmarPedido() {
 
 }
 
-//Esta sería mi parte.
+//Parte Desi
+
 var listaPedidos = document.getElementById("listaPedidos");
 var listaRecogida = document.getElementById("listaRecogida");
 
 function cargarPedidos() {
     var pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-
     listaPedidos.innerHTML = "";
     listaRecogida.innerHTML = "";
 
-    // Reemplazamos el forEach con un bucle for
     for (var i = 0; i < pedidos.length; i++) {
         var pedido = pedidos[i];
         var li = document.createElement("li");
-        li.innerText = "Pedido " + pedido.id + " - " + pedido.producto + " - " + pedido.estado;
+
+        // Mostrar detalles del pedido
+        li.innerHTML = "Pedido " + pedido.id + " - " + pedido.producto + " - " + pedido.estado +
+            " - Total: " + pedido.precio.toFixed(2) + "€";
 
         if (pedido.estado === "Realizado") {
-            setTimeout(function(id) {
-                return function() {
+            (function(id) {
+                setTimeout(function() {
                     cambiarEstado(id, "En proceso");
-                };
-            }(pedido.id), 3000);
+                }, 3000);
+            })(pedido.id);
         } else if (pedido.estado === "En proceso") {
-            setTimeout(function(id) {
-                return function() {
+            (function(id) {
+                setTimeout(function() {
                     cambiarEstado(id, "Listo para recoger");
-                };
-            }(pedido.id), 5000);
+                }, 5000);
+            })(pedido.id);
         } else if (pedido.estado === "Listo para recoger") {
             var btnRecoger = document.createElement("button");
             btnRecoger.innerText = "Recoger";
-            btnRecoger.onclick = function(index) {
+            btnRecoger.onclick = (function(id) {
                 return function() {
-                    recogerPedido(index);
+                    recogerPedido(id);
                 };
-            }(i);
+            })(pedido.id);
             li.appendChild(btnRecoger);
+
+            // Agregar a la zona de recogida
+            listaRecogida.appendChild(li);
+            continue; // Saltar la parte de agregar a listaPedidos
         }
 
+        // Agregar a la lista de pedidos en proceso
         listaPedidos.appendChild(li);
     }
 }
 
 function cambiarEstado(id, nuevoEstado) {
     var pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-
     for (var i = 0; i < pedidos.length; i++) {
         if (pedidos[i].id === id) {
             pedidos[i].estado = nuevoEstado;
             localStorage.setItem("pedidos", JSON.stringify(pedidos));
-            cargarPedidos(); 
-            break; 
+            cargarPedidos();
+            break;
         }
     }
 }
 
-function recogerPedido(index) {
+function recogerPedido(id) {
     var pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-    var pedido = pedidos.splice(index, 1);
-    
-    localStorage.setItem("pedidos", JSON.stringify(pedidos));
+    var nuevosPedidos = [];
+
+    for (var i = 0; i < pedidos.length; i++) {
+        if (pedidos[i].id !== id) {
+            nuevosPedidos.push(pedidos[i]);
+        }
+    }
+
+    localStorage.setItem("pedidos", JSON.stringify(nuevosPedidos));
     cargarPedidos();
 }
 

@@ -4,7 +4,10 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-.zonaPedidos {
+
+
+.zonaP {
+    position: absolute;
     background-color: rgb(239, 190, 111);
     width: 600px;
     border-radius: 20px;
@@ -12,11 +15,22 @@ body {
     margin: 20px;
 }
 
-.resumenPedidos {
+.zonaD {
+    position: relative;
+    left: 50%;
     background-color: beige;
     width: 300px;
     border-radius: 20px;
     padding: 20px;
     margin: 20px;
+}
 
+.zonaR {
+    position: relative;
+    left: 50%;
+    background-color: beige;
+    width: 300px;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
 }
