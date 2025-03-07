@@ -9,14 +9,24 @@ body {
     text-align: center;
 }
 
-
-.zonaP {
-    position: absolute;
-    background-color: rgba(241, 224, 118, 0.734);
-    width: 600px;
+.fondo {
+    position:absolute;
+    left: 10%;
+    align-items: center;
+    background-color: rgba(13, 15, 16, 0.847);
+    width: 1200px;
+    height: 750px;
     border-image-source: linear-gradient(rgb(255, 0, 0), rgb(74, 169, 206));
     border-image-slice: 1 1 1 1;
     border-image-width: 0.25rem;
+}
+
+
+.zonaP {
+    position: absolute;
+    background-color: rgba(246, 223, 73, 0.734);
+    width: 600px;
+
     border-radius: 20px;
     padding: 20px;
     margin: 20px;
@@ -24,9 +34,9 @@ body {
 
 .zonaD {
     position: relative;
-    left: 50%;
+    left: 60%;
     background-color: rgba(167, 227, 236, 0.848);
-    width: 300px;
+    width: 400px;
     border-radius: 20px;
     padding: 20px;
     margin: 20px;
@@ -34,10 +44,18 @@ body {
 
 .zonaR {
     position: relative;
-    left: 50%;
+    left: 60%;
     background-color: rgba(233, 141, 130, 0.823);
-    width: 300px;
+    width: 400px;
     border-radius: 20px;
     padding: 20px;
     margin: 20px;
+}
+
+.botonR {
+    
+    background-size: cover;
+    width: 130px;   
+    height: 40px; 
+    cursor: pointer; 
 }

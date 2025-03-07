@@ -76,9 +76,9 @@ function cargarPedidos() {
         var pedido = pedidos[i];
         var li = document.createElement("li");
 
+        
         // Mostrar detalles del pedido
-        li.innerHTML = "Pedido " + pedido.id + " - " + pedido.producto + " - " + pedido.estado +
-            " - Total: " + pedido.precio.toFixed(2) + "€";
+        li.innerHTML = "Pedido " + pedido.id + " - " + pedido.producto + " - " + pedido.estado + "<br>";
 
         if (pedido.estado === "Realizado") {
             (function(id) {
@@ -95,14 +95,15 @@ function cargarPedidos() {
             })(pedido.id);
             
         } else if (pedido.estado === "Listo para recoger") {
-            var btnRecoger = document.createElement("button");
-            btnRecoger.innerText = "Recoger";
-            btnRecoger.onclick = (function(id) {
+            var botonRecoger = document.createElement("img");
+            botonRecoger.className = "botonR"
+            botonRecoger.src = "imagenes/boton.png"
+            botonRecoger.onclick = (function(id) {
                 return function() {
                     recogerPedido(id);
                 };
             })(pedido.id);
-            li.appendChild(btnRecoger);
+            li.appendChild(botonRecoger);
 
             // Agregar a la zona de recogida
             listaRecogida.appendChild(li);
