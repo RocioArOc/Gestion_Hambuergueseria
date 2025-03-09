@@ -74,11 +74,13 @@ function cargarPedidos() {
 
     for (var i = 0; i < pedidos.length; i++) {
         var pedido = pedidos[i];
-        var li = document.createElement("li");
+        var div = document.createElement("div");
 
-        
         // Mostrar detalles del pedido
-        li.innerHTML = "Pedido " + pedido.id + " - " + pedido.producto + " - " + pedido.estado + "<br>";
+        div.innerHTML = "Pedido " + pedido.id + " - " + pedido.producto + " - " + pedido.estado + "<br>";
+
+        // Todos los pedidos se añaden a la zona de "Pedidos en proceso"
+        listaPedidos.appendChild(div);
 
         if (pedido.estado === "Realizado") {
             (function(id) {
@@ -96,24 +98,21 @@ function cargarPedidos() {
             
         } else if (pedido.estado === "Listo para recoger") {
             var botonRecoger = document.createElement("img");
-            botonRecoger.className = "botonR"
-            botonRecoger.src = "imagenes/boton.png"
+            botonRecoger.className = "botonR";
+            botonRecoger.src = "imagenes/boton.png";
             botonRecoger.onclick = (function(id) {
                 return function() {
                     recogerPedido(id);
                 };
             })(pedido.id);
-            li.appendChild(botonRecoger);
+            div.appendChild(botonRecoger);
 
             // Agregar a la zona de recogida
-            listaRecogida.appendChild(li);
-            continue; // Saltar la parte de agregar a listaPedidos
+            listaRecogida.appendChild(div);
         }
-
-        // Agregar a la lista de pedidos en proceso
-        listaPedidos.appendChild(li);
     }
 }
+
 
 function cambiarEstado(id, nuevoEstado) {
     var pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
@@ -128,7 +127,8 @@ function cambiarEstado(id, nuevoEstado) {
 }
 
 function recogerPedido(id) {
-    var pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+    var pedidos = JSON.parse(localStorage.getItem("pedidos")) || []; // Recargar los pedidos desde localStorage
+
     var nuevosPedidos = [];
 
     for (var i = 0; i < pedidos.length; i++) {
@@ -137,8 +137,12 @@ function recogerPedido(id) {
         }
     }
 
-    localStorage.setItem("pedidos", JSON.stringify(nuevosPedidos));
-    cargarPedidos();
+    localStorage.setItem("pedidos", JSON.stringify(nuevosPedidos)); // Actualizar el localStorage con los nuevos pedidos
+    cargarPedidos(); // Volver a cargar los pedidos desde localStorage para actualizar la interfaz
 }
 
+
 cargarPedidos();
+
+
+
