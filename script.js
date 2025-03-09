@@ -1,4 +1,3 @@
-//Parte Ro
 var pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
 var numeroPedido = JSON.parse(localStorage.getItem("numeroPedido")) || 1;
 
@@ -61,9 +60,7 @@ function confirmarPedido() {
     }
 
 }
-
-//Parte Desi
-
+//-------
 var listaPedidos = document.getElementById("listaPedidos");
 var listaRecogida = document.getElementById("listaRecogida");
 
