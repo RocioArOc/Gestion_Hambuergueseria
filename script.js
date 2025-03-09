@@ -65,7 +65,10 @@ var listaPedidos = document.getElementById("listaPedidos");
 var listaRecogida = document.getElementById("listaRecogida");
 
 function cargarPedidos() {
+    console.log("Recargando pedidos desde localStorage...");
     var pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+    console.log("Pedidos cargados:", pedidos);
+
     listaPedidos.innerHTML = "";
     listaRecogida.innerHTML = "";
 
@@ -124,8 +127,8 @@ function cambiarEstado(id, nuevoEstado) {
 }
 
 function recogerPedido(id) {
-    var pedidos = JSON.parse(localStorage.getItem("pedidos")) || []; // Recargar los pedidos desde localStorage
-
+    console.log("Intentando eliminar pedido con id:", id);
+    var pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
     var nuevosPedidos = [];
 
     for (var i = 0; i < pedidos.length; i++) {
@@ -133,11 +136,11 @@ function recogerPedido(id) {
             nuevosPedidos.push(pedidos[i]);
         }
     }
-
-    localStorage.setItem("pedidos", JSON.stringify(nuevosPedidos)); // Actualizar el localStorage con los nuevos pedidos
-    cargarPedidos(); // Volver a cargar los pedidos desde localStorage para actualizar la interfaz
+    localStorage.setItem("pedidos", JSON.stringify(nuevosPedidos));
+    console.log("Pedidos guardados en localStorage:", nuevosPedidos);
+    
+    cargarPedidos();
 }
-
 
 cargarPedidos();
 
