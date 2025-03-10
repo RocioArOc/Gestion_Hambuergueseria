@@ -60,7 +60,7 @@ function confirmarPedido() {
     }
 
 }
-//-------
+
 var listaPedidos = document.getElementById("listaPedidos");
 var listaRecogida = document.getElementById("listaRecogida");
 
